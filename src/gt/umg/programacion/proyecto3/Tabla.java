@@ -1,14 +1,15 @@
 package gt.umg.programacion.proyecto3;
 
 public class Tabla {
-	private String nombre;
+	private String nombreTabla;
 	private String campo;
 	private String tipoDato;
-	public String getNombre() {
-		return nombre;
+	private byte[] bytesTabla;
+	public String getNombreTabla() {
+		return nombreTabla;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreTabla(String nombreTabla) {
+		this.nombreTabla = nombreTabla;
 	}
 	public String getCampo() {
 		return campo;
@@ -21,5 +22,11 @@ public class Tabla {
 	}
 	public void setTipoDato(String tipoDato) {
 		this.tipoDato = tipoDato;
+	}
+	public byte[] getBytesTabla() {
+		return bytesTabla;
+	}
+	public void setBytesTabla(byte[] bytesTabla) {
+		this.bytesTabla = bytesTabla;
 	}
 }
