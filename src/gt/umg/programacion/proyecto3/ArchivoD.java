@@ -6,9 +6,9 @@ import java.text.*;
 
 public class ArchivoD {
 
-	private static final String dataBase = ("/DB/dataBase.txt");//ruta base de datos pricipal
-	private static final String entidades = ("/DB/entidades.txt");//ruta de archivos de las entidades
-	private static final String propiedades = ("/DB/propiedades.txt");//ruta de las propiedades de las entidades
+	private static final String dataBase = ("C:/DB/dataBase.txt");//ruta base de datos pricipal
+	private static final String entidades = ("C:/DB/entidades.txt");//ruta de archivos de las entidades
+	private static final String propiedades = ("C:/DB/propiedades.txt");//ruta de las propiedades de las entidades
 	static Scanner sc;
 	private final int totalBytes = 85;
 	private final static String formatoFecha = "dd/MM/yyyy";
