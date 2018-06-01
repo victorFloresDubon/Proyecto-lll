@@ -41,6 +41,7 @@ public class Proyecto {
 	}
 	public boolean crearTabla() {
 		Tabla t = new Tabla();
+		boolean encontrado = false;
 		System.out.print("Nombre de la tabla: ");
 		t.setNombreTabla(sc.nextLine());
 		try {
@@ -48,7 +49,8 @@ public class Proyecto {
 			do {
 				System.out.print("Nombre de la tabla: ");
 			    t.setNombreTabla(sc.nextLine());
-			}while
+			    if ()
+			}while(encontrado == false);
 
 			
 		}catch(IOException e) {
