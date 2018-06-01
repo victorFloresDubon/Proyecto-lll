@@ -17,10 +17,10 @@ public class Tabla {
 	public int getIndice() {
 		return indice;
 	}
-	public List<Propiedad> getpropiedades() {
+	public List<Propiedad> getPropiedades() {
 		return propiedades;
 	}
-	public void setpropiedades(List<Propiedad> propiedades) {
+	public void setPropiedades(List<Propiedad> propiedades) {
 		this.propiedades = propiedades;
 	}
 	public void setIndice(int indice) {
@@ -83,14 +83,14 @@ public class Tabla {
 	public void setBytes(int bytes) {
 		this.bytes = bytes;
 	}
-	public void setAtributo(Propiedad propiedad) {
+	public void setPropiedad(Propiedad propiedad) {
 		if (this.propiedades == null) {
 			this.propiedades = new ArrayList<>();
 		}
 		this.propiedades.add(propiedad);
 		this.tamanio = this.propiedades.size();
 	}
-	public void removeAtributo(Propiedad propiedad) {
+	public void removePropiedad(Propiedad propiedad) {
 		if (this.propiedades != null) {
 			if (this.propiedades.size() > 0) {
 				this.propiedades.remove(propiedad);
