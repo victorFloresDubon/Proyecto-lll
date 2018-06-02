@@ -6,10 +6,10 @@ import java.text.*;
 
 public class ArchivoD {
 
-	private static final String dataBase = ("C:/DB/dataBase.txt");//ruta base de datos pricipal
-	private static final String entidades = ("C:/DB/entidades.txt");//ruta de archivos de las entidades
-	private static final String propiedades = ("C:/DB/propiedades.txt");//ruta de las propiedades de las entidades
-	static Scanner sc;
+	private static final String dataBase = ("C:\\Users\\Rolando\\Documents\\TAREAS\\PROGRAMACION I\\JAVA\\gt.umg.programacion.proyecto3\\src\\gt\\umg\\programacion\\proyecto3\\dataBase.txt");//ruta base de datos pricipal
+	private static final String entidades = ("C:\\Users\\Rolando\\Documents\\TAREAS\\PROGRAMACION I\\JAVA\\gt.umg.programacion.proyecto3\\src\\gt\\umg\\programacion\\proyecto3\\entidades.txt");//ruta de archivos de las entidades
+	private static final String propiedades = ("C:\\Users\\Rolando\\Documents\\TAREAS\\PROGRAMACION I\\JAVA\\gt.umg.programacion.proyecto3\\src\\gt\\umg\\programacion\\proyecto3\\propiedades.txt");//ruta de las propiedades de las entidades
+	static Scanner sc = new Scanner(System.in);
 	private final int totalBytes = 85;
 	private final static String formatoFecha = "dd/MM/yyyy";
 	static DateFormat format = new SimpleDateFormat(formatoFecha);
@@ -115,34 +115,34 @@ public class ArchivoD {
 			int longitud = 0;
 			do {
 				strNombre = sc.nextLine();
+				strNombre = sc.nextLine();
 				longitud = strNombre.length();
 				if (longitud < 2 || longitud > 30) {
-					System.out.println("Longitud NO válida [de 2 a 30]");
+					System.out.println("Longitud NO valida [de 2 a 30]");
 				}else {
 					if (strNombre.contains(" ")) {
 						System.out.println("Nombre no debe de tener espacios en blanco, utilizar guion bajo");
 						longitud = 0;
 					}
 				}
-			}
-			while(longitud < 2 || longitud > 30);
+			}while(longitud < 2 || longitud > 30);
 			tabla.setNombreTabla(strNombre);
 			System.out.println("Propiedades de la Entidad");
-			boolean flgDetener = false;
+			int flgDetener = 0;
 			System.out.println("Escriba el nombre del atributo no. " + (tabla.getTamanio() + 1));
 			do {
 				Propiedad propiedad = new Propiedad();
 				propiedad.setIndice(tabla.getIndice());
-				flgDetener = false;
+				flgDetener = 0;
 				do {
 					strNombre = sc.nextLine();
 					longitud = strNombre.length();
 					if (longitud < 2 || longitud > 30) {
-						System.out.println("Longitud NO válida [de 2 a 30]");
+						System.out.println("Longitud NO valida [de 3 a 30]");
 					}else {
 						if (strNombre.contains(" ")) {
 							System.out.println("Nombre no debe de tener espacios en blanco, utilizar guion bajo");
-							flgDetener = false;
+							flgDetener = 0;
 						}
 					}
 				}while(longitud < 2 || longitud > 30);
@@ -164,9 +164,9 @@ public class ArchivoD {
 				}
 				propiedad.setNombreTipoDato();
 				tabla.setPropiedad(propiedad);
-				System.out.println("Desea ingesar otro campo? S/N");
-				flgDetener = sc.nextBoolean();
-			}while(flgDetener != false);
+				System.out.println("Desea ingesar otro campo? 1. Si 0. No");
+				flgDetener = sc.nextInt();
+			}while(flgDetener != 0);
 			System.out.println("Los datos a registrar son: ");
 			describeEntidad(tabla);
 			System.out.println("Presione 1 para guardar 0 para cancelar");
@@ -323,9 +323,9 @@ public class ArchivoD {
 		mIni(indice);
 	}
 	/*===================================================================================================================*/
-	/*Menú de Definición*/
+	/*Menu de Definicion*/
 	private void menuDef(boolean mostrarInsertaRegistros) {
-		int opc = 1;
+		int opcion;
 		do {
 			System.out.println("Menu de Definicion de Bases de Datos");
 			System.out.println("Escoja su opcion");
@@ -337,8 +337,8 @@ public class ArchivoD {
 			}
 			System.out.println("\t5. Borrar Bases de Datos");
 			System.out.println("\t0. Salir");
-			opc = sc.nextInt();
-			switch (opc) {
+			opcion = sc.nextInt();
+			switch (opcion) {
 			case 0:
 				System.out.println("Gracias por usar nuesto sistema, vuelva pronto!");
 				break;
@@ -375,7 +375,7 @@ public class ArchivoD {
 				System.out.println("Opcion NO existente");
 				break;
 			}
-		}while(opc != 0);
+		}while(opcion != 0);
 	}
 	/*===================================================================================================================*/
 
@@ -389,7 +389,8 @@ public class ArchivoD {
 		}
 		System.exit(0);
 	}
-	/*===================================================================================================================*/	
+/*===================================================================================================================*/	
+/*Menu principal*/
 	private void mIni(int indice) {
 
 		int op=0;
@@ -427,10 +428,18 @@ public class ArchivoD {
 					case 2:
 						break;
 					case 3: 
+						System.out.println("Ingrese el No. de carne a buscar");
+						int carne;
+						carne = sc.nextInt();
+						buscaRegistro(carne);
 						break;
 					case 4:
+						System.out.println("Ingrese el No. de carne a modificar");
+						int codigo;
+						codigo = sc.nextInt();
+						modificaRegistro(codigo);
 						break;
-					default: System.out.println("**opcion no valida, ingrese de nuevo** ");
+					default: System.out.println("**opcion no valida, intente de nuevo** ");
 					break;
 
 					}
@@ -611,8 +620,8 @@ public class ArchivoD {
 				// restar los bytes del registro leido
 				lon -= totalBytes;
 			}
-			// solo si el registro no se encontro imprimir un mensaje
-			if (!flgModificado) { // esto es equivalente a (bndEncontrado == false)
+			//si no se encuentra muestra mensaje
+			if (!flgModificado) {
 				System.out.println("No se encontro el carne indicado, por favor verifique");
 			}
 		} catch (Exception e) {
@@ -621,6 +630,106 @@ public class ArchivoD {
 	}
 
 /*===================================================================================================================*/	
+/*Busca registro*/
+	public void buscaRegistro(int carne) {
+		try {
+			long lon = f.length();
+			if (lon > 0) {
+				System.out.println("Arvhivo vacio");
+				return;
+			}
+			boolean flgEncontrado = false;
+			f.seek(0);//nos colocamos al inicio del archivo
+			Alumno a = new Alumno();
+			while(lon >= totalBytes) {
+				a.setCarne(f.readInt());
+				byte[] byteNombre = new byte[50];
+				f.read(byteNombre);
+				a.setBytesNombre(byteNombre);
+				byte[] byteFecha = new byte[28];
+				f.read(byteFecha);
+				a.setBytesFechaNacimiento(byteFecha);
+				if (a.getCarne() == carne) {
+					//mostramos los campos del registro
+					System.out.println("No. Carne: "+a.getCarne());
+					System.out.println("Nombre: "+a.getNombre());
+					System.out.println("Fecha de Nacimiento: "+dateToString(a.getFechaNacimiento()));
+					break;//salir del ciclo cuando encuentre el registro
+				}
+				lon -= totalBytes;
+			}
+			if (!flgEncontrado) {
+				System.out.println("No se encontro el carnet indicado, verifique de nuevo");
+			}
+		}catch(Exception e) {
+			System.out.println("Error: "+e.getMessage());
+		}
+	}
+/*===================================================================================================================*/	
+/*Listar registros*/
+	public void listarRegistros(Tabla tabla) {
+		try {
+			long lon = f.length();
+			if(lon <= 0) {
+				System.out.println("Archivo vac�o");
+				return;
+			}
+			f.seek(0);
+			byte[] tempArregloByte;
+			String lin = "";
+			for (Propiedad propiedad : tabla.getPropiedades()) {
+				lin += propiedad.getNombreCampo().toString().trim() + "\t\t";
+			}
+			System.out.println(lin);
+			while(lon >= tabla.getBytes()) {
+				lin = "";
+				for (Propiedad propiedad : tabla.getPropiedades()) {
+					switch(propiedad.getTipoDato()) {
+					case INT:
+						int tempInt = f.readInt();
+						lin += String.valueOf(tempInt) + "\t\t";
+						break;
+					case LONG:
+						long tempLong = f.readLong();
+						lin += String.valueOf(tempLong) + "\t\t";
+						break;
+					case STRING:
+						tempArregloByte = new byte[propiedad.getLongitud()];
+						f.read(tempArregloByte);
+						String tempStr = new String(tempArregloByte);
+						lin += tempStr.trim() + "\t\t";
+						break;
+					case DOUBLE:
+						double tempDouble = f.readDouble();
+						lin += String.valueOf(tempDouble) + "\t\t";
+						break;
+					case FLOAT:
+						float tempFloat = f.readFloat();
+						lin += String.valueOf(tempFloat) + "\t\t";
+						break;
+					case DATE:
+						tempArregloByte = new byte[propiedad.getBytes()];
+						f.read(tempArregloByte);
+						tempStr = new String(tempArregloByte);
+						lin += tempStr.trim() + "\t\t";
+						break;
+					case CHAR:
+						char tempChar = f.readChar();
+						lin += String.valueOf(tempChar) + "\t\t";
+						break;
+					}
+				}
+				f.readByte();//lee cambio de linea
+				//restamos los bytes del registro leido
+				lon -= tabla.getBytes();
+				System.out.println(lin);
+			}
+		}catch(Exception e) {
+			System.out.println("Error: "+e.getMessage());
+		}
+	}
+/*===================================================================================================================*/	
+
 /*Cerrar archivos*/
 private void cerrarArchivos() {
 	if (f != null) {
