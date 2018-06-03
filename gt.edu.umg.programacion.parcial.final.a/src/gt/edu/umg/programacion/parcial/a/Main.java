@@ -4,12 +4,9 @@ import java.util.Scanner;
 import java.io.*;
 
 public class Main {
-	
-	private static final String rutData = "C:\\Users\\Rolando\\Documents\\TAREAS\\PROGRAMACION I\\JAVA\\gt.edu.umg.programacion.parcial.final.a\\src\\gt\\edu\\umg\\programacion\\parcial\\a\\data.dat";
-	private static final String rutHistorico = "C:\\Users\\Rolando\\Documents\\TAREAS\\PROGRAMACION I\\JAVA\\gt.edu.umg.programacion.parcial.final.a\\src\\gt\\edu\\umg\\programacion\\parcial\\a\\historico.dat";
+
 	static Scanner sc = new Scanner(System.in);
-	RandomAccessFile data = null, historico = null;
-	
+
 	public static void main(String[] args) {
 		Main iniciar = new Main();
 		iniciar.menuMuestras();
@@ -18,8 +15,7 @@ public class Main {
 	private void menuMuestras() {
 		try {
 			int opc;
-			int nuevo;
- 			Cola c = new Cola();
+			Cola c = new Cola();
 			Muestra m = new Muestra();
 			do {
 				System.out.println("\t\tSistema de Control de Muestras");
@@ -35,17 +31,17 @@ public class Main {
 					System.out.println("Gracias por usar nuestro sistema, vuelva pronto");
 					break;
 				case 1:
-						int codigo;
-						String nombre;
-						System.out.println("Codigo: ");
-						codigo = sc.nextInt();
-						m.setCodigo(codigo);
-						System.out.println("Nombre: ");
-						nombre = sc.nextLine();
-						nombre = sc.nextLine();
-						m.setNombre(nombre);
-						c.agregarMuestra(m);
-						System.out.println("Muestra en cola");
+					int codigo;
+					String nombre;
+					System.out.println("Codigo: ");
+					codigo = sc.nextInt();
+					m.setCodigo(codigo);
+					System.out.println("Nombre: ");
+					nombre = sc.nextLine();
+					nombre = sc.nextLine();
+					m.setNombre(nombre);
+					c.agregarMuestra(m);
+					System.out.println("Muestra en cola");
 					break;
 				case 2:
 					c.quitarMuestra();
@@ -54,7 +50,15 @@ public class Main {
 					c.listarMuestras();
 					break;
 				case 4:
-					//cargarDatos();
+					System.out.println("Cargando datos....");
+					if(c.cargarDatos()) {
+						System.out.println("Datos en cola cargados con exito");
+						System.out.println("Vaciando cola....");
+						c.vaciar();
+						System.out.println("Cola vacia, datos historicos actualizados!!");
+					}else {
+						System.out.println("No se cargaron los datos");
+					}
 					break;
 				case 5:
 					break;
@@ -68,9 +72,4 @@ public class Main {
 			System.out.println("Error: "+e.getMessage());
 		}
 	}
-//Carga los datos en fichero
-	public boolean cargaDatos() {
-		
-	}
-	
 }
