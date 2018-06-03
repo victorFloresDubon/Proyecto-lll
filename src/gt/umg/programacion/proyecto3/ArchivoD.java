@@ -1,3 +1,31 @@
+<<<<<<< HEAD
+package gt.edu.umg;
+
+import java.io.*;
+import java.util.Scanner;
+
+public class ArchivoD {
+
+	static final String ruta = ("registro.txt");
+	static Scanner sc;
+	private final int totalBytes = 50;
+	RandomAccessFile f = null;
+	
+	public static void main(String[]args) {
+		ArchivoD ad = new ArchivoD();
+		ad.mIni();
+		System.exit(0);
+	}
+	
+	public void mIni() {
+		
+		int op=0;
+		try {
+			
+			f = new RandomAccessFile (ruta,"rw");
+			System.out.println("****Bienvenido****");
+			int cr;
+=======
 package gt.umg.programacion.proyecto3;
 
 import java.io.*;
@@ -408,6 +436,7 @@ public class ArchivoD {
 			f = new RandomAccessFile (dataBase,"rw");
 			System.out.println("****Bienvenido****");
 			Propiedad p = entidad.getPropiedades().get(0);
+>>>>>>> f6214d16db89917437a33f288a26d329dd743ee9
 			do {
 				try {
 					System.out.println("Ingresa la opcion que desees");
@@ -418,12 +447,20 @@ public class ArchivoD {
 					System.out.println("0. Salir");
 					op = sc.nextInt();
 					switch(op) {
+<<<<<<< HEAD
+					
+					case 0: System.out.println("**Hasta luego**");
+						break;
+						
+					case 1:
+=======
 
 					case 0: System.out.println("**Hasta luego**");
 					break;
 
 					case 1:
 						insertaRegistro(entidad);
+>>>>>>> f6214d16db89917437a33f288a26d329dd743ee9
 						break;
 					case 2:
 						break;
@@ -439,15 +476,39 @@ public class ArchivoD {
 						codigo = sc.nextInt();
 						modificaRegistro(codigo);
 						break;
+<<<<<<< HEAD
 					default: System.out.println("**opcion no valida, intente de nuevo** ");
+=======
+<<<<<<< HEAD
+						default: System.out.println("**opcion no valida, ingrese de nuevo** ");
+						break;
+						
+=======
+					default: System.out.println("**opcion no valida, ingrese de nuevo** ");
+>>>>>>> 41c2ad2129eae216159fb23ca8ce60b51bae92dd
 					break;
 
+>>>>>>> f6214d16db89917437a33f288a26d329dd743ee9
 					}
 				}catch(Exception e) {
 					System.out.println("Error"+e.getMessage());
 				}
 			}while (op !=0);
 			f.close();
+<<<<<<< HEAD
+			
+		}catch(Exception e) {
+			System.out.println("Error"+e.getMessage());
+		}
+		
+	}
+	
+	
+			
+	}
+
+
+=======
 		}catch(Exception e) {
 			System.out.println("Error"+e.getMessage());
 		}
@@ -808,3 +869,4 @@ public String dateToString(Date date) {
 /*===================================================================================================================*/	
 
 }
+>>>>>>> f6214d16db89917437a33f288a26d329dd743ee9
